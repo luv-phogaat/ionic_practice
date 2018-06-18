@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
+
 
 @Component({
   selector: 'page-home',
@@ -11,7 +12,7 @@ export class HomePage {
   countries: string[];
   errorMessage: string;
 
-  constructor(public navCtrl: NavController, public rest: RestProvider) {
+  constructor(public navCtrl: NavController, public rest: RestProvider, public loadingCtrl: LoadingController) {
 
   }
 
@@ -20,10 +21,20 @@ export class HomePage {
   }
 
   getCountries() {
+  let loader = this.loadingCtrl.create({
+    content: "Please wait..."
+  });
+  loader.present();
     this.rest.getCountries()
        .subscribe(
-         countries => this.countries = countries,
-         error =>  this.errorMessage = <any>error);
+         countries =>{ 
+            this.countries = countries;
+            loader.dismiss();
+         },
+         error =>  {
+            this.errorMessage = <any>error;
+            
+         });
   }
 
 }

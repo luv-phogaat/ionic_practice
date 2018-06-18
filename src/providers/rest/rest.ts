@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import "rxjs/add/operator/retry";
+import "rxjs/add/operator/let";
 
 /*
   Generated class for the RestProvider provider.
@@ -12,12 +14,17 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class RestProvider {
+
 private apiUrl = 'https://restcountries.eu/rest/v2/all';
+protected headers: Headers;
   constructor(public http: HttpClient) {
-    console.log('Hello RestProvider Provider');
+    //console.log('Hello RestProvider Provider');
+     this.headers = new Headers();
+        this.headers.append("Access-Control-Allow-Origin", "*");
   }
+ 
   getCountries(): Observable<string[]> {
-  return this.http.get(this.apiUrl)
+  return this.http.get(this.apiUrl).retry(5)
                   .map(this.extractData)
                   .catch(this.handleError);
 }

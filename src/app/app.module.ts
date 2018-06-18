@@ -9,11 +9,14 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { DemoPage } from '../pages/demo/demo';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RestProvider } from '../providers/rest/rest';
 import { Splash } from '../pages/splash/splash';
+
+import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { Splash } from '../pages/splash/splash';
     HomePage,
     DemoPage,
     TabsPage,
-    Splash
+    Splash,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -38,13 +42,16 @@ import { Splash } from '../pages/splash/splash';
     HomePage,
     DemoPage,
     TabsPage,
-    Splash
+    Splash,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    AndroidFingerprintAuth 
   ]
 })
 export class AppModule {}
+
