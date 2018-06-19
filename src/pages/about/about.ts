@@ -7,7 +7,7 @@ import { LoadingController } from 'ionic-angular';
 })
 export class AboutPage {
 
-  constructor((public loadingCtrl: LoadingController) {
+  constructor(public loadingCtrl: LoadingController) {
 
   }
   presentLoading() {

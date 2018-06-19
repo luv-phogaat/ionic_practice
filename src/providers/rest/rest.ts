@@ -16,7 +16,7 @@ import "rxjs/add/operator/let";
 export class RestProvider {
 
 private apiUrl = 'https://restcountries.eu/rest/v2/all';
-protected headers: Headers;
+protected headers: HttpHeaders;
   constructor(public http: HttpClient) {
     //console.log('Hello RestProvider Provider');
      this.headers = new Headers();
