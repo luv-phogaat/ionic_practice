@@ -35,20 +35,27 @@
       <ion-col>
         <button ion-button class="submit-btn" full type="submit" [disabled]="!loginForm.form.valid">Login
         </button>
+        <br>
+        <button ion-button class="submit-btn" full type="button" (click)="fingerlogin()" style="background-color:blueviolet">Show Fingerprint Auth Dialog
+        </button>
+        
         <div *ngIf="error" class="alert alert-danger" style="color:red;margin-top:20px;">{{error}}</div>
       </ion-col>
-      <button ion-button class="submit-btn" full type="button" (click)='glogin()' style="background-color:#D84B37">Login with &nbsp;<ion-icon name="logo-googleplus"></ion-icon>
-        </button>
+      
     </ion-row>
     </form>
-    <div *ngIf="isLoggedIn; else loginTemplate">
-    <h1>Welcome, {{displayName}}!</h1>
-    <p>Email: {{email}}<br>
-      User ID: {{userId}}</p>
+    <div *ngIf="(user | async) || {} as user">
+    <button ion-button class="submit-btn" *ngIf="!user.uid" full type="button" (tap)='glogin()' style="background-color:#D84B37">Login with &nbsp;<ion-icon name="logo-googleplus"></ion-icon>
+        </button>
+    <div *ngIf="user.uid">
+    <h1>Welcome, {{user.displayName}}!</h1>
+    <p>Email: {{user.email}}<br>
+      User ID: {{user.uid}}</p>
     <p><ion-avatar item-left>
-        <img src="{{imageUrl}}">
+<!--        <img src="{{user.photoURL}}">-->
        </ion-avatar></p>
-    <p><button ion-button (click)="logout()">Logout From Google</button></p>
+    <p><button ion-button (tap)="signOut()">Logout From Google</button></p>
+   </div>
   </div>
     </ion-col>
     </ion-row>

@@ -15,9 +15,21 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RestProvider } from '../providers/rest/rest';
 import { Splash } from '../pages/splash/splash';
-
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
+import { GooglePlus } from '@ionic-native/google-plus';
 
+const firebaseConfig ={
+    apiKey: "AIzaSyBwvJbTbOcQ2VooUiQRUw4NKvBFOJmGM30",
+    authDomain: "zest-97579.firebaseapp.com",
+    databaseURL: "https://zest-97579.firebaseio.com",
+    projectId: "zest-97579",
+    storageBucket: "zest-97579.appspot.com",
+    messagingSenderId: "1076193118913"  
+}
+
+3
 @NgModule({
   declarations: [
     MyApp,
@@ -32,7 +44,9 @@ import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -50,7 +64,8 @@ import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
-    AndroidFingerprintAuth 
+    AndroidFingerprintAuth ,
+    GooglePlus
   ]
 })
 export class AppModule {}
