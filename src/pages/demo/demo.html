@@ -1,15 +1,26 @@
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Demo</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      Home
-      Friends
-      Events
-      Close Menu
-    </ion-list>
-  </ion-content>
+<ion-menu side="left" [content]="content">
+
+<ion-content padding class="back-ground">
+<ion-list>
+<ion-item menuClose detail-none>Close Menu</ion-item>
+<ion-item detail-none (click)="logout()">logout</ion-item>
+</ion-list>
+</ion-content>
 </ion-menu>
+<ion-nav #content></ion-nav>
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only end>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Demo
+    </ion-title>
+  </ion-navbar>
+  
+</ion-header>
+
+<ion-content padding>
+    <p>This is demo page for side menu.</p>
+</ion-content>
+
