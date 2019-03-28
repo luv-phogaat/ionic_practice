@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/gangaschool/public_html/repotesting1
+    - /bin/cp -R * $DEPLOYPATH
